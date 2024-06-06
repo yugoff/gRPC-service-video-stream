@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+service VideoStreamService {
+    rpc StreamVideo(VideoUrl) returns (stream AnnotatedVideoChunk) {}
+}
+
+message VideoUrl {
+    string url = 1;
+}
+
+message AnnotatedVideoChunk {
+    bytes data = 1;
+}

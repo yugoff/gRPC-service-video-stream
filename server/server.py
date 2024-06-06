@@ -1,6 +1,5 @@
 import grpc
-import video_stream_pb2
-import video_stream_pb2_grpc
+import video_stream_pb2, video_stream_pb2_grpc
 import cv2
 import numpy as np
 from ultralytics import YOLO
@@ -11,7 +10,7 @@ import urllib.parse
 class VideoStreamServicer(video_stream_pb2_grpc.VideoStreamServiceServicer):
     def StreamVideo(self, request, context):
         video_url = request.path
-        model = YOLO('yolov8n.pt')  # Загрузка модели YOLOv8n
+        model = YOLO('model/yolov8n.pt')  # Загрузка модели YOLOv8n
 
         # Проверка формата URL
         if video_url.startswith('file://'):

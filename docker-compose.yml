@@ -3,8 +3,7 @@ services:
 
   server:
     build:
-      context: .
-      dockerfile: server.Dockerfile
+      context: ./server
     ports:
       - "50051:50051"
     networks:
@@ -12,8 +11,7 @@ services:
 
   client:
     build:
-      context: .
-      dockerfile: client.Dockerfile
+      context: ./client
     networks:
       - grpc-net
     depends_on:

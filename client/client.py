@@ -1,6 +1,5 @@
 import grpc
-import video_stream_pb2
-import video_stream_pb2_grpc
+import video_stream_pb2, video_stream_pb2_grpc
 import cv2
 import numpy as np
 import os
@@ -17,7 +16,7 @@ def get_video_url(directory):
     return None
 
 def stream_video(video_url):
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel('127.0.0.1:50051') as channel:
         stub = video_stream_pb2_grpc.VideoStreamServiceStub(channel)
         request = video_stream_pb2.VideoUrl(url=video_url)
         response_iterator = stub.StreamVideo(request)
@@ -36,5 +35,5 @@ def stream_video(video_url):
             pass
 
 if __name__ == '__main__':
-    get_video_url('')
+    get_video_url('./video')
     stream_video(get_video_url(''))
